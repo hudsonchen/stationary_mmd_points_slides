@@ -1,0 +1,42 @@
+\newcommand{\etalchar}[1]{$^{#1}$}
+\begin{thebibliography}{CMG{\etalchar{+}}25}
+
+\bibitem[AKSG19]{arbel2019maximum}
+Michael Arbel, Anna Korba, Adil Salim, and Arthur Gretton.
+\newblock Maximum mean discrepancy gradient flow.
+\newblock In H.~Wallach, H.~Larochelle, A.~Beygelzimer, F.~d'Alché Buc,
+  E.~Fox, and R.~Garnett, editors, {\em Advances in Neural Information
+  Processing Systems}, volume~32. Curran Associates, Inc., 2019.
+
+\bibitem[CMG{\etalchar{+}}25]{chen2025drmmd}
+Zonghao Chen, Atalanti Mustafi, Pierre Glaser, Anna Korba, Arthur Gretton, and
+  Bharath~K. Sriperumbudur.
+\newblock {(De)-regularized MMD Gradient Flow}.
+\newblock {\em Journal of Machine Learning Research}, 2025.
+
+\bibitem[DP10]{dick2010digital}
+Josef Dick and Friedrich Pillichshammer.
+\newblock {\em Digital nets and sequences: discrepancy theory and quasi--Monte
+  Carlo integration}.
+\newblock Cambridge University Press, 2010.
+
+\bibitem[GBR{\etalchar{+}}12]{gretton2012kernel}
+Arthur Gretton, Karsten~M. Borgwardt, Malte~J. Rasch, Bernhard Sch{\"o}lkopf,
+  and Alexander Smola.
+\newblock A kernel two-sample test.
+\newblock {\em Journal of Machine Learning Research}, 13(1):723--773, 2012.
+
+\bibitem[SFL11]{sriperumbudur2011universality}
+Bharath~K. Sriperumbudur, Kenji Fukumizu, and Gert R.~G. Lanckriet.
+\newblock Universality, characteristic kernels and {RKHS} embedding of
+  measures.
+\newblock {\em Journal of Machine Learning Research}, 12(7):2389--2410, 2011.
+
+\bibitem[XKS22]{xu2022accurate}
+Lantian Xu, Anna Korba, and Dejan Slepcev.
+\newblock Accurate quantization of measures via interacting particle-based
+  optimization.
+\newblock In {\em International Conference on Machine Learning}, pages
+  24576--24595. PMLR, 2022.
+
+\end{thebibliography}

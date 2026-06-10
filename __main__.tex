@@ -1,0 +1,547 @@
+% Basic slide skeleton for arXiv:2505.20754
+\documentclass[aspectratio=169,xcolor=dvipsnames]{beamer}
+\usetheme{SimpleDarkBlue}
+
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{subcaption}
+\usepackage{tikz}
+\usepackage{natbib}
+\usepackage{amsmath,amssymb,amsthm}
+\usetikzlibrary{arrows.meta,positioning,shapes,calc,decorations.pathreplacing}
+
+\definecolor{graytext}{gray}{0.5}
+\definecolor{mmdBlue}{RGB}{25, 96, 170}
+\definecolor{mmdGreen}{RGB}{46, 125, 50}
+\definecolor{mmdRed}{RGB}{180, 70, 55}
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+\definecolor{answerBody}{RGB}{255, 236, 210}
+\setbeamercolor{answer box}{bg=answerBody, fg=black}
+\newenvironment{answer box}{%
+    \begin{beamercolorbox}[wd=\linewidth, sep=0.33em, rounded=true]{answer box}%
+}{%
+    \end{beamercolorbox}%
+}
+\newcommand{\mmdicon}[2]{%
+    \tikz[baseline=(icon.base)]{
+        \node[circle, fill=#1, text=white, inner sep=1.2pt, font=\scriptsize\bfseries] (icon) {#2};
+    }%
+}
+\newcommand{\crossedterm}[1]{%
+    \tikz[baseline=(term.base)]{
+        \node[inner sep=1pt] (term) {\strut #1};
+        \draw[mmdRed, line width=1.1pt] (term.west) -- (term.east);
+    }%
+}
+\newcommand{\checkterm}[1]{%
+    \tikz[baseline=(term.base)]{
+        \node[inner sep=1pt] (term) {\strut #1};
+        \draw[mmdGreen!80!black, line width=1.5pt, line cap=round, line join=round]
+            ([xshift=-0.25em]term.west) ++(0,0.02em) -- ++(0.18em,-0.18em) -- ++(0.38em,0.42em);
+    }%
+}
+\newcommand{\whycartoon}{%
+    \begin{tikzpicture}[scale=0.92, line cap=round, line join=round]
+        \draw[mmdBlue!18, line width=5pt] (-2.25,-0.98) arc[start angle=205,end angle=-25,radius=2.55cm];
+        \fill[mmdBlue!9] (0,-0.34) ellipse (1.12cm and 0.50cm);
+        \draw[mmdBlue!65!black, line width=1.0pt] (0,-0.34) ellipse (1.12cm and 0.50cm);
+        \fill[mmdBlue!8] (0,0.56) circle (0.68cm);
+        \draw[mmdBlue!70!black, line width=1.1pt] (0,0.56) circle (0.68cm);
+        \draw[mmdBlue!70!black, line width=1.0pt] (-0.28,0.78) -- (-0.05,0.70);
+        \draw[mmdBlue!70!black, line width=1.0pt] (0.28,0.78) -- (0.05,0.70);
+        \fill[mmdBlue!85!black] (-0.24,0.54) circle (1.5pt);
+        \fill[mmdBlue!85!black] (0.24,0.54) circle (1.5pt);
+        \draw[mmdBlue!85!black, line width=0.8pt] (-0.18,0.28) .. controls (0,0.20) .. (0.18,0.28);
+        \draw[mmdGreen!75!black, line width=1.6pt] (-1.05,-0.22) -- (-0.47,0.08);
+        \draw[mmdGreen!75!black, line width=1.2pt] (-1.38,-0.42) circle (0.30cm);
+        \draw[mmdRed!80!black, line width=1.1pt, fill=mmdRed!8] (1.10,0.95)
+            .. controls (1.10,1.38) and (1.48,1.62) .. (1.90,1.50)
+            .. controls (2.35,1.37) and (2.48,0.92) .. (2.20,0.58)
+            .. controls (1.96,0.29) and (1.43,0.35) .. (1.22,0.68)
+            -- (0.90,0.48) -- (1.06,0.83);
+        \node[mmdRed!85!black, font=\Huge\bfseries] at (1.76,0.98) {?};
+    \end{tikzpicture}%
+}
+
+
+% Render slide citations as compact grey alphabetic labels.
+\let\oldcitep\citep
+\let\oldcitet\citet
+\renewcommand{\citep}[1]{{\scriptsize\textcolor{graytext}{\oldcitep{#1}}}}
+\renewcommand{\citet}[1]{{\scriptsize\textcolor{graytext}{\oldcitet{#1}}}}
+\renewcommand{\cite}[1]{{\scriptsize\textcolor{graytext}{\oldcitep{#1}}}}
+
+\title{Stationary MMD Points}
+\author{Zonghao (Hudson) Chen}
+\institute{}
+\date{}
+
+\newtheorem{thm}{Theorem}
+\newtheorem*{thm*}{Theorem}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{defi}{Definition}
+
+\begin{document}
+
+\input{include/macros}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\section{Personal}
+\begin{frame}{About Me}
+    \vspace{-0.25cm}
+    \begin{columns}[T,onlytextwidth]
+        \column{0.34\textwidth}
+        \begin{minipage}[t][0.68\textheight][t]{\linewidth}
+            \centering
+            \begin{tikzpicture}
+                \node[
+                    draw=mmdBlue!55!black,
+                    line width=0.8pt,
+                    rounded corners=4pt,
+                    inner sep=2.5pt
+                ] {
+                    \IfFileExists{figures/personal.pdf}{
+                      \includegraphics[width=0.86\linewidth,height=0.58\textheight,keepaspectratio]{figures/personal.pdf}
+                    }{
+                      \begin{minipage}[c][0.58\textheight][c]{0.86\linewidth}
+                        \centering\small\color{graytext}Add personal photo at\\figures/personal.pdf
+                      \end{minipage}
+                    }
+                };
+            \end{tikzpicture}
+        \end{minipage}
+
+        \column{0.62\textwidth}
+        {\Large\bfseries Zonghao (Hudson) Chen}\\[-0.04cm]
+        {\small\color{graytext}4th year PhD student, University College London}\\[0.22cm]
+
+        \begin{beamercolorbox}[wd=\linewidth, sep=0.33em, rounded=true]{answer box}
+            \small
+            \begin{tabular}{@{}p{0.44\linewidth}p{0.46\linewidth}@{}}
+                Foundational AI Centre & Fran\c{c}ois-Xavier Briol\\
+                Gatsby Unit & Arthur Gretton
+            \end{tabular}
+        \end{beamercolorbox}
+
+        \vspace{0.18cm}
+        \begin{beamercolorbox}[wd=\linewidth, sep=0.33em, rounded=true]{answer box}
+            \small
+            Tsinghua Uni., B.Eng. in Electronic Engineering, 2022
+        \end{beamercolorbox}
+
+        \vspace{0.18cm}
+        \begin{beamercolorbox}[wd=\linewidth, sep=0.33em, rounded=true]{answer box}
+            {\bfseries Research Interests}\\
+            \small
+            \vspace{-0.14cm}
+            \begin{itemize}
+                \setlength\topsep{0pt}
+                \setlength\partopsep{0pt}
+                \setlength\parsep{0pt}
+                \setlength\itemsep{0.02cm}
+                \item Kernel and nonparametric methods
+                \item Causal inference
+                \item Statistical learning theory
+            \end{itemize}
+            \vspace{-0.26cm}
+        \end{beamercolorbox}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Motivation}
+    \begin{exampleblock}{}
+        \textbf{Problem:} Approximation of a target distribution $\mu$ with a finite set of points $\{\mathbf{x}_i\}_{i=1}^n$.
+    \end{exampleblock}
+    \begin{columns}[T,onlytextwidth]
+        \column{0.59\textwidth}
+
+        \begin{itemize}
+            \item Denote the empirical distribution of $\{\mathbf{x}_i\}_{i=1}^n$ as 
+            $$\hat{\mu}_n = \frac{1}{n}\sum_{i=1}^n \delta_{\mathbf{x}_i}.$$
+            \item We want $\hat{\mu}_n$ to be close to $\mu$ in some sense.
+            \begin{align*}
+                \lim_{n\to\infty} D(\hat{\mu}_n, \mu) = 0 . 
+            \end{align*}
+        \end{itemize}
+
+        \column{0.39\textwidth}
+        \centering
+        \includegraphics[width=\linewidth,trim=18 18 18 18,clip]{figures/gaussian_mu_samples.pdf}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Motivation}
+    \centering
+    \begin{exampleblock}{}
+        \textbf{Problem:} Approximation of a target distribution $\mu$ with a finite set of points $\{\mathbf{x}_i\}_{i=1}^n$.
+    \end{exampleblock}
+    \vspace{0.25cm}
+    \begin{columns}[b,onlytextwidth]
+        \column{0.31\textwidth}
+        \centering
+        \setlength{\fboxsep}{5pt}
+        \fcolorbox{mmdGreen!65!black}{mmdGreen!8}{%
+            \begin{minipage}[t][0.40\textheight][t]{0.88\linewidth}
+                \centering
+                {\Large \mmdicon{mmdGreen!80!black}{$\int$}}\\[0.08cm]
+                {\bfseries Numerical Integration}\\[0.10cm]
+                \vspace{0.2cm}
+                \includegraphics[width=\linewidth]{figures/integral_illustration.pdf}
+            \end{minipage}
+        }
+
+        \column{0.31\textwidth}
+        \centering
+        \setlength{\fboxsep}{5pt}
+        \fcolorbox{mmdBlue!70!black}{mmdBlue!8}{%
+            \begin{minipage}[t][0.40\textheight][t]{0.88\linewidth}
+                \centering
+                {\Large \mmdicon{mmdBlue!80!black}{$\sim$}}\\[0.08cm]
+                {\bfseries Sampling}\\[0.10cm]
+                \vspace{0.2cm}
+                \includegraphics[width=\linewidth]{figures/sampling_generative_illustration.pdf}
+            \end{minipage}
+        }
+
+        \column{0.31\textwidth}
+        \centering
+        \setlength{\fboxsep}{5pt}
+        \fcolorbox{mmdRed!70!black}{mmdRed!8}{%
+            \begin{minipage}[t][0.40\textheight][t]{0.88\linewidth}
+                \centering
+                {\Large \mmdicon{mmdRed!80!black}{$\mathcal{C}$}}\\[0.08cm]
+                {\bfseries Coreset Selection}\\[0.10cm]
+                \vspace{0.2cm}
+                \includegraphics[width=\linewidth]{figures/coreset_selection_illustration.pdf}
+            \end{minipage}
+        }
+    \end{columns}
+\end{frame}
+
+\begin{frame}{An empirical observation}
+    \centering \includegraphics[width=0.60\linewidth]{figures/sampling_four_panel_summary.pdf}
+    \begin{itemize}
+        \item Samples from MMD flow are more \textcolor{mmdGreen!80!black}{uniform} than IID samples~\citep{xu2022accurate}.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Background: What is MMD?}
+    \begin{columns}[c]
+        \column{0.50\textwidth}
+        \begin{itemize}
+            \item Given two distributions $\Pb$ and $\Qb$, how to compare them? 
+            \item $|\E_{\Pb}[X] - \E_{\Qb}[X]|$. 
+            \item $|\E_{\Pb}[X^2] - \E_{\Qb}[X^2]|$.
+            \item The first two moments are not enough! 
+        \end{itemize}
+
+        \column{0.5\textwidth}
+        \centering
+        \begin{tikzpicture}[scale=0.88, every node/.style={font=\scriptsize}]
+            \draw[blue!80!black, very thick] (-0.8,2.35) -- (-0.35,2.35)
+                node[right, black] {$\Pb$};
+            \draw[orange!90!black, very thick] (0.55,2.35) -- (1.0,2.35)
+                node[right, black] {$\Qb$};
+
+            \fill[blue!25, opacity=0.75]
+                plot[smooth, samples=100, domain=-2.7:2.0]
+                (\x,{1.75*exp(-0.5*((\x+0.75)/0.72)^2)});
+            \draw[blue!80!black, very thick]
+                plot[smooth, samples=100, domain=-2.7:2.0]
+                (\x,{1.75*exp(-0.5*((\x+0.75)/0.72)^2)});
+
+            \fill[orange!30, opacity=0.7]
+                plot[smooth, samples=100, domain=-1.2:3.1]
+                (\x,{1.35*exp(-0.5*((\x-0.85)/0.95)^2)});
+            \draw[orange!90!black, very thick]
+                plot[smooth, samples=100, domain=-1.2:3.1]
+                (\x,{1.35*exp(-0.5*((\x-0.85)/0.95)^2)});
+
+            \draw[blue!80!black, dashed, thick] (-0.75,0) -- (-0.75,1.95)
+                node[above] {mean};
+            \draw[orange!90!black, dashed, thick] (0.85,0) -- (0.85,1.55)
+                node[above] {mean};
+
+        \end{tikzpicture}
+    \end{columns}
+    \vspace{0.3cm}
+    \begin{exampleblock}{}
+\centering
+    \textbf{Goal}: Compare $\Pb$ and $\Qb$ with a general $f$, i.e., $|\E_{\Pb}[f(X)] - \E_{\Qb}[f(X)]|$?
+\end{exampleblock}
+\end{frame}
+
+\begin{frame}{Background: Maximum Mean Discrepancy (MMD)~\citep{gretton2012kernel}}
+    \begin{columns}[c]
+        \column{0.8\textwidth}
+        \begin{itemize}
+            \item $\calH$ is a reproducing kernel Hilbert space (RKHS) with kernel $k$.
+            \begin{align*}
+                \text{MMD}(\Pb, \Qb)
+                := \sup_{f \in \calH}
+                |\E_{\Pb}[f(X)] - \E_{\Qb}[f(X)]|.
+            \end{align*}
+            \item The RKHS contains functions that are linear combinations of the feature maps $\phi:\calX\to\calH$, $f=\sum_{i=1}^n \alpha_i \phi(x_i)$.
+
+        \end{itemize}
+
+        \column{0.2\textwidth}
+        \centering
+        \begin{tikzpicture}[scale=0.72, every node/.style={font=\scriptsize}]
+            \begin{scope}
+                \draw[->, thick] (-1.55,0) -- (1.75,0) node[right] {$x$};
+                \node[above] at (0.1,0.38) {input space};
+
+                \foreach \x in {-0.9,-0.65,-0.35,-0.1} {
+                    \fill[blue!80!black] (\x,0) circle (2pt);
+                }
+                \foreach \x in {0.45,0.7,1.0,1.25} {
+                    \fill[orange!90!black] (\x,0) circle (2pt);
+                }
+                \node[blue!80!black] at (-0.55,-0.35) {$\Pb$};
+                \node[orange!90!black] at (0.95,-0.35) {$\Qb$};
+            \end{scope}
+            \vspace{0.2cm}
+            \begin{scope}[shift={(0,-2.55)}]
+                \draw[->, thick] (-1.55,0) -- (1.75,0) node[right] {$\phi_1$};
+                \draw[->, thick] (-1.35,-1.1) -- (-1.35,1.25) node[above] {$\phi_2$};
+                \node[above] at (0.15,1.25) {feature space};
+
+                \foreach \p in {(-1.0,0.55),(-0.72,0.82),(-0.35,0.48),(-0.05,0.9)} {
+                    \fill[blue!80!black] \p circle (2pt);
+                }
+                \foreach \p in {(0.25,-0.45),(0.58,-0.2),(0.95,-0.52),(1.25,-0.05)} {
+                    \fill[orange!90!black] \p circle (2pt);
+                }
+            \end{scope}
+        \end{tikzpicture}
+    \end{columns}
+    \begin{thm*}
+        MMD admits a closed-form expression:
+        \begin{align*}
+            \mathrm{MMD}^2(\Pb, \Qb)
+            = \E_{X,X'\sim\Pb}[k(X,X')]
+            + \E_{Y,Y'\sim\Qb}[k(Y,Y')] - 2\E_{X\sim\Pb,\,Y\sim\Qb}[k(X,Y)] .
+        \end{align*}
+    \end{thm*}
+    \begin{itemize}
+        \item MMD is a probability divergence ($\mathrm{MMD}(\Pb, \Qb)=0 \iff \Pb=\Qb$) if $k$ is characteristic (Gaussian)~\citep{sriperumbudur2011universality}.
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Background: MMD gradient flow~\citep{arbel2019maximum}}
+    \vspace{-0.15cm}
+    \begin{itemize}
+        \setlength\itemsep{0.05cm}
+        \item Start with an initial set of $n$ particles $\{\bm{x}_i^{(0)}\}_{i=1}^n$ at time $0$.
+        \item Evolve the particles according to the MMD gradient flow:
+        \begin{align*}
+            \bm{x}_i^{(t+1)} = \bm{x}_i^{(t)} - \gamma \cdot \nabla_{\boldsymbol{x}_i^{(t)}} 
+            \mathrm{MMD}^2\left(\mu, \frac{1}{n} \sum_{j=1}^n \delta_{\boldsymbol{x}_j^{(t)}}\right), \qquad i=1,\ldots,n.
+        \end{align*}
+        \vspace{-0.6cm}
+        \begin{itemize}
+            \item $\gamma>0$ is the step size.
+        \end{itemize}
+    \end{itemize}
+    \vspace{0.3cm}
+    \centering
+    \includegraphics[width=0.9\linewidth,height=0.34\textheight,keepaspectratio]{figures/sampling_gaussian_mmd_flow_trajectory.pdf}
+    \begin{itemize}
+        \item A Wasserstein gradient flow.
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Motivation}
+    \begin{exampleblock}{}
+        \centering \textbf{Observation:} MMD flow samples are more \textcolor{mmdGreen!80!black}{uniform} than IID samples~\citep{xu2022accurate}.
+    \end{exampleblock}
+    \vspace{0.35cm}
+    \centering
+    \whycartoon
+\end{frame}
+
+\begin{frame}{Existing work}
+    \begin{itemize}
+        \item Existing finite-sample rates in MMD gradient flows~\citep{arbel2019maximum,chen2025drmmd}
+        \item Let ${\mu}_n^{(t)}=\frac{1}{n} \sum_{j=1}^n \delta_{\boldsymbol{x}_j^{(t)}}$ be the empirical distribution of $n$ particles at iterate $t$. 
+        \begin{align*}
+            \mmd\left(\mu, {\mu}_n^{(t)}\right) \leq C(t) n^{-\frac{1}{2}}, 
+            \quad W_2\left(\mu, {\mu}_n^{(t)}\right) 
+            \leq C(t) n^{-\frac{1}{2}}.
+        \end{align*}
+    \end{itemize}
+    \begin{answer box}
+        {\centering\textbf{Two limitations}\par}
+        \begin{itemize}
+            \item Same rate as IID sampling: $n^{-\frac{1}{2}}$.
+            \item The constant $C(t)$ grows exponentially in $t$.
+        \end{itemize}
+    \end{answer box}
+\end{frame}
+
+\begin{frame}{Existing work}
+    \begin{itemize}
+        \item Minimum MMD points
+        \vspace{-0.4cm}
+        \begin{align*}
+            \{\mathbf{x}_i^*\}_{i=1}^n = \arg\min_{\{\mathbf{x}_i\}_{i=1}^n} \operatorname{MMD}\left(\mu, \frac{1}{n} \sum_{j=1}^n \delta_{\mathbf{x}_j}\right).
+        \end{align*}
+        \item Minimum MMD points achieve better than IID rate~\citep{xu2022accurate,dick2010digital}. 
+        \item Let ${\mu}_n^{\ast}=\frac{1}{n} \sum_{j=1}^n \delta_{\boldsymbol{x}_j^{\ast}}$ 
+        be the empirical distribution of $n$ minimum MMD points. 
+        \vspace{-0.2cm}
+        \begin{align*}
+            \mmd\left(\mu, {\mu}_n^{\ast} \right) \leq C n^{-1}.
+        \end{align*}
+    \end{itemize}
+    \vspace{-0.2cm}
+    \begin{answer box}
+        {\centering\textbf{Two limitations}\par}
+        \begin{itemize}
+            \item Minimum MMD points are hard to compute, due to the non-convexity of MMD.
+            \item Gradient descent only finds a \textcolor{mmdRed}{stationary} point instead.
+        \end{itemize}
+    \end{answer box}
+\end{frame}
+
+\begin{frame}{Motivation}
+    \centering
+    {\large
+        \textcolor{mmdRed}{$\times$}\,
+        \crossedterm{\textbf{Minimum MMD points}}
+        \quad{\color{graytext}but}\quad
+        \textcolor{mmdGreen!80!black}{$\checkmark$}\,
+        \textbf{Stationary MMD points}
+    }\\[0.16cm]
+
+    \includegraphics[width=0.94\linewidth]{figures/illustration_stationary.pdf}
+\end{frame}
+
+\begin{frame}{Stationary MMD points}
+    \begin{defi}[Stationary MMD points]
+        A sequence of point sets $\{x_i\}_{i=1}^n$ with
+        $\mu_n := \frac{1}{n}\sum_{i=1}^n \delta_{x_i}$, that satisfies:
+        \begin{enumerate}
+            \item \textbf{\red{Convergence:}}
+            $\mmd(\mu,\mu_n)\to 0$ as $n\to\infty$.
+            \item \textbf{\blue{Stationarity:}}
+            $\nabla_{x_1,\ldots,x_n}\mmd^2(\mu,\mu_n)=0$.
+        \end{enumerate}
+    \end{defi}
+    \begin{itemize}
+        \item Minimum MMD points are a special case of stationary MMD points.
+    \end{itemize}
+    \vspace{0.3cm}
+    \begin{exampleblock}{}
+        \centering \textbf{Question:} Why does stationary MMD points exhibit superior numerical integraion performance than IID points?
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}{Stationary MMD points}
+\begin{itemize}
+    \item Simulate MMD flow for long enough, $t\to\infty$. 
+    \item For any $i\in\{1, \ldots, n\}$:  
+\begin{align*}
+    \nabla_{x_i} \operatorname{MMD}^2\left(\mu, \; \frac{1}{n} \sum_{j=1}^n \delta_{x_j}\right)=0 
+    \Longrightarrow \frac{1}{n} \sum_{j=1}^n \nabla_1 k\left(x_i, x_j\right)-\int \nabla_1 k\left(x_i, y\right) \mathrm{d} \mu(y)=0. 
+\end{align*}
+    \item Exact integration on $x \mapsto \nabla_1 k\left(x_i, x\right)$.
+    \item Exact integration on $\{1\}$.
+\end{itemize}
+\begin{exampleblock}{}
+    \centering \textbf{Exact integration subspace:} 
+    \vspace{-0.20cm}
+    \begin{align*}
+    \mathcal{F}_n := \operatorname{span}\Bigl(
+    \{1\} \cup \bigl\{\nabla_1 k(x_i,\cdot) : i\in\{1, \ldots, n\}\bigr\}
+    \Bigr) \subset \mathcal{H}.
+    \end{align*}
+\end{exampleblock}
+\end{frame}
+
+\begin{frame}{Stationary MMD points}
+\begin{itemize}
+    \item Suppose the kernel $k$ is continuously differentiable.
+    \item Suppose the kernel $k$ is $c_0$-universal. 
+\end{itemize}
+
+\begin{prop}[Approximation of $\calF_n$ towards $\calH$]
+Given $f\in\calH$. Consider the semi-norm
+$$
+|f|_n:=\inf \left\{\left\|r_n\right\|_{\mathcal{H}}: f=f_n+r_n, \; f_n \in \mathcal{F}_n, \; r_n \in \mathcal{H}\right\}
+$$
+Then, $\lim _{n \rightarrow \infty}|f|_n=0$.
+\end{prop}
+
+\vspace{0.3cm}
+\centering
+\begin{tikzpicture}[
+    scale=0.76,
+    every node/.style={font=\scriptsize},
+    arrow/.style={-{Latex[length=1.8mm]}, line width=0.8pt, mmdBlue!80!black}
+]
+    \draw[draw=mmdBlue!80!black, fill=mmdBlue!8, line width=0.8pt]
+        (-3.7,0) ellipse (2.2cm and 1.15cm);
+    \node[mmdBlue!75!black, font=\bfseries] at (-2.05,1.08) {$\calH$};
+    \draw[draw=mmdGreen!80!black, fill=mmdGreen!18, line width=0.75pt]
+        (-3.7,0) ellipse (1.15cm and 0.42cm);
+    \node[mmdGreen!60!black, font=\bfseries] at (-3.7,0) {$\calF_n\in\calH$};
+
+    \draw[arrow] (-1.15,0) -- (0.85,0)
+        node[midway, above=0.08cm] {$n\to\infty$};
+
+    \draw[draw=mmdBlue!80!black, fill=mmdGreen!14, line width=0.8pt]
+        (3.1,0) ellipse (2.2cm and 1.15cm);
+    \node[mmdBlue!75!black, font=\bfseries] at (3.1,0) {$\calF_n$ dense in $\calH$};
+\end{tikzpicture}
+\end{frame}
+
+\begin{frame}{Stationary MMD points}
+    \begin{thm}[Super-convergence]
+        For a stationary MMD point set $\{x_i\}_{i=1}^n$ and
+        $\mu_n = \frac{1}{n} \sum_{i=1}^n\delta_{x_i}$,
+        \vspace{-0.3cm}
+        \[
+            \left|\frac{1}{n}\sum_{i=1}^n f(x_i)-\int f\,\mathrm{d}\mu\right|
+            \leq |f|_n \, \operatorname{MMD}(\mu,\mu_n).
+        \]
+    \end{thm}
+
+    \begin{itemize}
+        \item Since
+        $\underbrace{|f|_n}_{\substack{\to 0\\ \text{stationarity}}}\to 0$,
+        the estimator has error
+        $o\!\left(\underbrace{\operatorname{MMD}(\mu,\mu_n)}_{\substack{\to 0\\ \text{MMD flow}}}\right)$.
+    \end{itemize}
+
+    \vspace{0.3cm}
+    \begin{answer box}
+        {\centering\textbf{Proof sketch}\par}
+        \begin{itemize}
+            \item Decompose $f=f_n+r_n$ with $f_n\in\calF_n$.
+        \end{itemize}
+        \begin{align*}
+            \begin{aligned}
+\left|\frac{1}{n} \sum_{i=1}^n f\left(\boldsymbol{x}_i\right)-\int f \mathrm{~d} \mu\right|=\left|\frac{1}{n} \sum_{i=1}^n r_n\left(\boldsymbol{x}_i\right)-\int r_n \mathrm{~d} \mu\right|
+\leq\left\|r_n\right\|_{\mathcal{H}} \cdot \operatorname{MMD}\left(\mu, \mu_n\right),
+\end{aligned}
+    \end{align*}
+    \vspace{-0.3cm}
+    \end{answer box}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{References}
+  \bibliographystyle{alpha}
+  \bibliography{reference}
+\end{frame}
+
+\end{document}
