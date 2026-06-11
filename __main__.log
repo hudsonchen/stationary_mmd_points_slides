@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2026.1.30)  11 JUN 2026 12:42
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2026.1.30)  11 JUN 2026 12:43
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -856,7 +856,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 <figures/gaussian_mu_samples.pdf, id=65, 643.20299pt x 643.20299pt>
 File: figures/gaussian_mu_samples.pdf Graphic file (type pdf)
 <use figures/gaussian_mu_samples.pdf>
-Package pdftex.def Info: figures/gaussian_mu_samples.pdf  used on input line 244.
+Package pdftex.def Info: figures/gaussian_mu_samples.pdf  used on input line 245.
 (pdftex.def)             Requested size: 160.46289pt x 160.45538pt.
  [3
 
@@ -864,17 +864,17 @@ Package pdftex.def Info: figures/gaussian_mu_samples.pdf  used on input line 244
 <figures/integral_illustration.pdf, id=88, 715.47299pt x 281.85298pt>
 File: figures/integral_illustration.pdf Graphic file (type pdf)
 <use figures/integral_illustration.pdf>
-Package pdftex.def Info: figures/integral_illustration.pdf  used on input line 295.
+Package pdftex.def Info: figures/integral_illustration.pdf  used on input line 296.
 (pdftex.def)             Requested size: 112.23997pt x 44.21574pt.
 <figures/sampling_generative_illustration.pdf, id=89, 788.947pt x 311.30176pt>
 File: figures/sampling_generative_illustration.pdf Graphic file (type pdf)
 <use figures/sampling_generative_illustration.pdf>
-Package pdftex.def Info: figures/sampling_generative_illustration.pdf  used on input line 295.
+Package pdftex.def Info: figures/sampling_generative_illustration.pdf  used on input line 296.
 (pdftex.def)             Requested size: 112.23349pt x 44.28496pt.
 <figures/coreset_selection_illustration.pdf, id=90, 722.7pt x 289.08pt>
 File: figures/coreset_selection_illustration.pdf Graphic file (type pdf)
 <use figures/coreset_selection_illustration.pdf>
-Package pdftex.def Info: figures/coreset_selection_illustration.pdf  used on input line 295.
+Package pdftex.def Info: figures/coreset_selection_illustration.pdf  used on input line 296.
 (pdftex.def)             Requested size: 112.23788pt x 44.89514pt.
  [4
 
@@ -882,19 +882,19 @@ Package pdftex.def Info: figures/coreset_selection_illustration.pdf  used on inp
 <figures/sampling_gaussian_two_panel_summary.pdf, id=139, 643.20299pt x 351.85475pt>
 File: figures/sampling_gaussian_two_panel_summary.pdf Graphic file (type pdf)
 <use figures/sampling_gaussian_two_panel_summary.pdf>
-Package pdftex.def Info: figures/sampling_gaussian_two_panel_summary.pdf  used on input line 316.
+Package pdftex.def Info: figures/sampling_gaussian_two_panel_summary.pdf  used on input line 317.
 (pdftex.def)             Requested size: 178.4664pt x 97.62842pt.
 <figures/gaussian_cubature_error.pdf, id=140, 462.52798pt x 354.12299pt>
 File: figures/gaussian_cubature_error.pdf Graphic file (type pdf)
 <use figures/gaussian_cubature_error.pdf>
-Package pdftex.def Info: figures/gaussian_cubature_error.pdf  used on input line 316.
+Package pdftex.def Info: figures/gaussian_cubature_error.pdf  used on input line 317.
 (pdftex.def)             Requested size: 141.8648pt x 108.61507pt.
  [5
 
  <./figures/sampling_gaussian_two_panel_summary.pdf> <./figures/gaussian_cubature_error.pdf>] [6
 
 ]
-Overfull \hbox (5.67862pt too wide) in paragraph at lines 420--420
+Overfull \hbox (5.67862pt too wide) in paragraph at lines 421--421
  [][] 
  []
 
@@ -904,7 +904,7 @@ Overfull \hbox (5.67862pt too wide) in paragraph at lines 420--420
 <figures/sampling_gaussian_mmd_flow_trajectory.pdf, id=227, 753.77612pt x 207.1785pt>
 File: figures/sampling_gaussian_mmd_flow_trajectory.pdf Graphic file (type pdf)
 <use figures/sampling_gaussian_mmd_flow_trajectory.pdf>
-Package pdftex.def Info: figures/sampling_gaussian_mmd_flow_trajectory.pdf  used on input line 444.
+Package pdftex.def Info: figures/sampling_gaussian_mmd_flow_trajectory.pdf  used on input line 445.
 (pdftex.def)             Requested size: 301.93066pt x 82.9869pt.
  [8
 
@@ -918,27 +918,27 @@ Package pdftex.def Info: figures/sampling_gaussian_mmd_flow_trajectory.pdf  used
 <figures/illustration_stationary.pdf, id=278, 742.57423pt x 190.76352pt>
 File: figures/illustration_stationary.pdf Graphic file (type pdf)
 <use figures/illustration_stationary.pdf>
-Package pdftex.def Info: figures/illustration_stationary.pdf  used on input line 518.
+Package pdftex.def Info: figures/illustration_stationary.pdf  used on input line 519.
 (pdftex.def)             Requested size: 386.75833pt x 99.35477pt.
  [12
 
  <./figures/illustration_stationary.pdf>]
 
 LaTeX Font Warning: Font shape `OT1/cmss/bx/it' undefined
-(Font)              using `OT1/cmss/b/it' instead on input line 539.
+(Font)              using `OT1/cmss/b/it' instead on input line 540.
 
 
 LaTeX Font Warning: Font shape `OT1/cmss/b/it' undefined
-(Font)              using `OT1/cmss/b/n' instead on input line 539.
+(Font)              using `OT1/cmss/b/n' instead on input line 540.
 
 LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <10.95> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 539.
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 540.
 
 LaTeX Font Warning: Font shape `OT1/cmss/bx/it' undefined
-(Font)              using `OT1/cmss/b/it' instead on input line 539.
+(Font)              using `OT1/cmss/b/it' instead on input line 540.
 
 LaTeX Font Info:    Font shape `OT1/cmss/b/it' in size <10.95> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 539.
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 540.
 [13
 
 ] [14
@@ -947,7 +947,7 @@ LaTeX Font Info:    Font shape `OT1/cmss/b/it' in size <10.95> not available
 <figures/exactness.pdf, id=348, 413.42192pt x 308.50383pt>
 File: figures/exactness.pdf Graphic file (type pdf)
 <use figures/exactness.pdf>
-Package pdftex.def Info: figures/exactness.pdf  used on input line 569.
+Package pdftex.def Info: figures/exactness.pdf  used on input line 570.
 (pdftex.def)             Requested size: 205.72635pt x 153.51718pt.
  [15
 
@@ -958,14 +958,14 @@ Package pdftex.def Info: figures/exactness.pdf  used on input line 569.
 ] [18
 
 ]
-Overfull \hbox (15.1488pt too wide) detected at line 697
+Overfull \hbox (15.1488pt too wide) detected at line 698
 []
  []
 
 [19
 
 ]
-Overfull \vbox (4.57716pt too high) detected at line 731
+Overfull \vbox (4.57716pt too high) detected at line 732
  []
 
 [20
@@ -978,7 +978,7 @@ Overfull \vbox (4.57716pt too high) detected at line 731
 <figures/mog.pdf, id=501, 1306.22147pt x 324.43079pt>
 File: figures/mog.pdf Graphic file (type pdf)
 <use figures/mog.pdf>
-Package pdftex.def Info: figures/mog.pdf  used on input line 799.
+Package pdftex.def Info: figures/mog.pdf  used on input line 800.
 (pdftex.def)             Requested size: 411.44397pt x 102.19128pt.
  [23
 
@@ -986,12 +986,12 @@ Package pdftex.def Info: figures/mog.pdf  used on input line 799.
 <figures/house.pdf, id=543, 930.31671pt x 303.90019pt>
 File: figures/house.pdf Graphic file (type pdf)
 <use figures/house.pdf>
-Package pdftex.def Info: figures/house.pdf  used on input line 812.
+Package pdftex.def Info: figures/house.pdf  used on input line 813.
 (pdftex.def)             Requested size: 267.43607pt x 87.35902pt.
 <figures/elevators.pdf, id=544, 930.31671pt x 303.90019pt>
 File: figures/elevators.pdf Graphic file (type pdf)
 <use figures/elevators.pdf>
-Package pdftex.def Info: figures/elevators.pdf  used on input line 812.
+Package pdftex.def Info: figures/elevators.pdf  used on input line 813.
 (pdftex.def)             Requested size: 267.43607pt x 87.35902pt.
  [24
 
@@ -1027,13 +1027,13 @@ Package rerunfilecheck Info: File `__main__.out' has not changed.
 Here is how much of TeX's memory you used:
  30302 strings out of 480247
  633867 string characters out of 5896151
- 913560 words of memory out of 5000000
+ 914560 words of memory out of 5000000
  47567 multiletter control sequences out of 15000+600000
  485416 words of font info for 86 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  99i,19n,104p,446b,1044s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/zapfding/uzdr.pfb>
-Output written on __main__.pdf (27 pages, 1262847 bytes).
+Output written on __main__.pdf (27 pages, 1262886 bytes).
 PDF statistics:
  720 PDF objects out of 1000 (max. 8388607)
  446 compressed objects within 5 object streams
