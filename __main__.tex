@@ -456,7 +456,6 @@
 \begin{frame}{Existing work}
     \begin{itemize}
         \item Existing finite-sample rates in MMD gradient flows~\citep{arbel2019maximum,chen2025drmmd}.
-        \item Requires noise injection.
         \item Let ${\mu}_n^{(t)}=\frac{1}{n} \sum_{j=1}^n \delta_{x_j^{(t)}}$ be the empirical distribution of $n$ particles at iterate $t$. 
         \begin{align*}
             \mmd\left(\mu, {\mu}_n^{(t)}\right) \leq C(t) n^{-\frac{1}{2}}, 
@@ -465,11 +464,10 @@
         \end{align*}
     \end{itemize}
     \begin{answer box}
-        {\centering\textbf{Three limitations}\par}
+        {\centering\textbf{Limitations}\par}
         \begin{itemize}
             \item Same rate as IID sampling: $n^{-\frac{1}{2}}$.
             \item The constant $C(t)$ grows exponentially in $t$. 
-            \item Noise injection.
         \end{itemize}
     \end{answer box}
 \end{frame}
@@ -493,7 +491,7 @@
     \end{itemize}
     \vspace{0.1cm}
     \begin{answer box}
-        {\centering\textbf{Two limitations}\par}
+        {\centering\textbf{Limitations}\par}
         \begin{itemize}
             \item Minimum MMD points are hard to compute, due to the non-convexity of MMD.
             \item Gradient descent only finds a \textcolor{mmdRed}{stationary} point instead.
