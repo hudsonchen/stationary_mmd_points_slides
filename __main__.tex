@@ -121,6 +121,7 @@
 \renewcommand{\cite}[1]{{\scriptsize\textcolor{graytext}{\oldcitep{#1}}}}
 
 \title{Stationary MMD Points}
+\subtitle{ICML 2026}
 \author{Zonghao (Hudson) Chen}
 \institute{}
 \date{}
@@ -234,9 +235,6 @@
             \item Denote the empirical distribution of $\{x_i\}_{i=1}^n$ as 
             $$\mu_n = \frac{1}{n}\sum_{i=1}^n \delta_{x_i}.$$
             \item We want $\mu_n$ to be close to $\mu$.
-            \begin{align*}
-                \lim_{n\to\infty} D(\mu_n, \mu) = 0 . 
-            \end{align*}
         \end{itemize}
 
         \column{0.39\textwidth}
@@ -251,53 +249,70 @@
         \textbf{Problem:} Approximation of a target distribution $\mu$ with a finite set of points $\{x_i\}_{i=1}^n$.
     \end{exampleblock}
     \vspace{0.25cm}
-    \begin{columns}[b,onlytextwidth]
+    \begin{columns}[T,onlytextwidth]
         \column{0.31\textwidth}
         \centering
         \setlength{\fboxsep}{5pt}
+        \vspace{0pt}%
         \fcolorbox{mmdGreen!65!black}{mmdGreen!8}{%
             \begin{minipage}[t][0.40\textheight][t]{0.88\linewidth}
                 \centering
                 {\Large \mmdicon{mmdGreen!80!black}{$\int$}}\\[0.08cm]
                 {\bfseries Numerical Integration}\\[0.10cm]
                 \vspace{0.2cm}
-                \includegraphics[width=\linewidth]{figures/integral_illustration.pdf}
+                \includegraphics[width=\linewidth,height=0.20\textheight,keepaspectratio]{figures/integral_illustration.pdf}
             \end{minipage}
         }
 
         \column{0.31\textwidth}
         \centering
         \setlength{\fboxsep}{5pt}
+        \vspace{0pt}%
         \fcolorbox{mmdBlue!70!black}{mmdBlue!8}{%
             \begin{minipage}[t][0.40\textheight][t]{0.88\linewidth}
                 \centering
                 {\Large \mmdicon{mmdBlue!80!black}{$\sim$}}\\[0.08cm]
                 {\bfseries Sampling}\\[0.10cm]
                 \vspace{0.2cm}
-                \includegraphics[width=\linewidth]{figures/sampling_generative_illustration.pdf}
+                \includegraphics[width=\linewidth,height=0.20\textheight,keepaspectratio]{figures/sampling_generative_illustration.pdf}
             \end{minipage}
         }
 
         \column{0.31\textwidth}
         \centering
         \setlength{\fboxsep}{5pt}
+        \vspace{0pt}%
         \fcolorbox{mmdRed!70!black}{mmdRed!8}{%
             \begin{minipage}[t][0.40\textheight][t]{0.88\linewidth}
                 \centering
                 {\Large \mmdicon{mmdRed!80!black}{$\mathcal{C}$}}\\[0.08cm]
                 {\bfseries Coreset Selection}\\[0.10cm]
                 \vspace{0.2cm}
-                \includegraphics[width=\linewidth]{figures/coreset_selection_illustration.pdf}
+                \includegraphics[width=\linewidth,height=0.20\textheight,keepaspectratio]{figures/coreset_selection_illustration.pdf}
             \end{minipage}
         }
     \end{columns}
 \end{frame}
 
 \begin{frame}{An empirical observation}
-    \centering \includegraphics[width=0.60\linewidth]{figures/sampling_four_panel_summary.pdf}
+    \begin{center}
+        \includegraphics[height=0.40\textheight,keepaspectratio]{figures/sampling_gaussian_two_panel_summary.pdf}%
+        \hspace{0.18cm}%
+        \raisebox{-0.079\textheight}{%
+            \includegraphics[height=0.445\textheight,keepaspectratio]{figures/gaussian_cubature_error.pdf}%
+        }%
+    \end{center}
     \begin{itemize}
         \item Samples from MMD flow are more \textcolor{mmdGreen!80!black}{uniform} than IID samples~\citep{xu2022accurate}.
+        \item Lower numerical integration error for fixed $n$.
+        \begin{align*}
+            \left| \int f(x) \; \dd \mu(x) - \int f(x) \; \dd \mu_n(x) \right| . 
+        \end{align*}
     \end{itemize}
+    \vspace{-0.1cm}
+    \begin{exampleblock}{}
+        \centering \textbf{Goal:} Why? 
+    \end{exampleblock}
 \end{frame}
 
 \begin{frame}{Background: What is MMD?}
