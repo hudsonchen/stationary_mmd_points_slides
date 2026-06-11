@@ -7,17 +7,24 @@
 \usepackage{booktabs}
 \usepackage{subcaption}
 \usepackage{tikz}
-\usepackage{natbib}
+\usepackage[numbers]{natbib}
 \usepackage{amsmath,amssymb,amsthm}
+\usepackage{pifont}
 \usetikzlibrary{arrows.meta,positioning,shapes,calc,decorations.pathreplacing}
 
 \definecolor{graytext}{gray}{0.5}
 \definecolor{mmdBlue}{RGB}{25, 96, 170}
 \definecolor{mmdGreen}{RGB}{46, 125, 50}
 \definecolor{mmdRed}{RGB}{180, 70, 55}
+\definecolor{darkgreen}{RGB}{0, 110, 55}
+\definecolor{remarkTitle}{RGB}{120, 80, 180}
+\definecolor{remarkBody}{RGB}{245, 239, 255}
 \newcommand{\red}[1]{\textcolor{red}{#1}}
 \newcommand{\blue}[1]{\textcolor{blue}{#1}}
+\newcommand{\green}[1]{\textcolor{mmdGreen!80!black}{#1}}
 \definecolor{answerBody}{RGB}{255, 236, 210}
+\definecolor{assumptionTitle}{RGB}{218, 116, 32}
+\definecolor{assumptionBody}{RGB}{255, 241, 222}
 \setbeamercolor{answer box}{bg=answerBody, fg=black}
 \newenvironment{answer box}{%
     \begin{beamercolorbox}[wd=\linewidth, sep=0.33em, rounded=true]{answer box}%
@@ -64,6 +71,46 @@
         \node[mmdRed!85!black, font=\Huge\bfseries] at (1.76,0.98) {?};
     \end{tikzpicture}%
 }
+\newcommand{\sorrycartoon}{%
+    \begin{tikzpicture}[scale=1.15, line cap=round, line join=round]
+        \draw[mmdBlue!18, line width=4pt] (-1.25,-1.20) arc[start angle=205,end angle=-25,radius=1.45cm];
+        \draw[mmdBlue!65!black, line width=1.1pt] (-0.60,-0.05) -- (0.28,-0.54);
+        \draw[mmdBlue!65!black, line width=1.0pt] (-0.28,-0.28) -- (-0.70,-0.62);
+        \draw[mmdBlue!65!black, line width=1.0pt] (-0.03,-0.42) -- (0.42,-0.72);
+        \draw[mmdBlue!65!black, line width=1.0pt] (0.20,-0.55) -- (0.12,-1.03);
+        \draw[mmdBlue!65!black, line width=1.0pt] (0.36,-0.64) -- (0.58,-1.06);
+        \fill[mmdBlue!6] (-0.88,0.20) ellipse (0.56cm and 0.42cm);
+        \draw[mmdBlue!65!black, line width=1.1pt] (-0.88,0.20) ellipse (0.56cm and 0.42cm);
+        \draw[mmdBlue!65!black, line width=1.0pt] (-1.18,0.33) -- (-0.96,0.23);
+        \draw[mmdBlue!65!black, line width=1.0pt] (-0.64,0.24) -- (-0.82,0.18);
+        \draw[mmdBlue!85!black, line width=0.8pt] (-1.03,0.08) .. controls (-0.89,0.00) .. (-0.73,0.08);
+        \draw[mmdGreen!70!black, line width=0.9pt, fill=mmdGreen!15]
+            (-0.20,0.48) .. controls (-0.03,0.20) and (-0.12,0.05) .. (-0.30,0.08)
+            .. controls (-0.45,0.10) and (-0.47,0.28) .. (-0.20,0.48);
+    \end{tikzpicture}%
+}
+\newcommand{\strengthcartoon}{%
+    \begin{tikzpicture}[scale=1.15, line cap=round, line join=round]
+        \fill[mmdBlue!8] (0,0.58) circle (0.62cm);
+        \draw[mmdBlue!70!black, line width=1.0pt] (0,0.58) circle (0.62cm);
+        \fill[mmdBlue!85!black] (-0.20,0.62) circle (1.5pt);
+        \fill[mmdBlue!85!black] (0.20,0.62) circle (1.5pt);
+        \draw[mmdBlue!85!black, line width=0.8pt] (-0.16,0.36) .. controls (0,0.18) .. (0.16,0.36);
+        \draw[mmdBlue!70!black, line width=1.0pt] (-0.24,0.76) -- (-0.06,0.84);
+        \draw[mmdBlue!70!black, line width=1.0pt] (0.24,0.76) -- (0.06,0.84);
+    \end{tikzpicture}%
+}
+\newcommand{\limitationcartoon}{%
+    \begin{tikzpicture}[scale=1.15, line cap=round, line join=round]
+        \fill[mmdBlue!8] (0,0.58) circle (0.62cm);
+        \draw[mmdBlue!70!black, line width=1.0pt] (0,0.58) circle (0.62cm);
+        \fill[mmdBlue!85!black] (-0.20,0.62) circle (1.5pt);
+        \fill[mmdBlue!85!black] (0.20,0.62) circle (1.5pt);
+        \draw[mmdBlue!85!black, line width=0.8pt] (-0.18,0.44) .. controls (0,0.25) .. (0.18,0.44);
+        \draw[mmdBlue!70!black, line width=1.0pt] (-0.24,0.82) -- (-0.08,0.74);
+        \draw[mmdBlue!70!black, line width=1.0pt] (0.24,0.82) -- (0.08,0.74);
+    \end{tikzpicture}%
+}
 
 
 % Render slide citations as compact grey alphabetic labels.
@@ -83,6 +130,29 @@
 \newtheorem{lem}[thm]{Lemma}
 \newtheorem{prop}[thm]{Proposition}
 \newtheorem{defi}{Definition}
+\newtheorem{assumptionthm}{Assumption}
+\newenvironment{assumption}[1][]{%
+    \begingroup
+    \setbeamercolor{block title}{bg=assumptionTitle, fg=white}%
+    \setbeamercolor{block body}{bg=assumptionBody, fg=black}%
+    \if\relax\detokenize{#1}\relax
+        \begin{assumptionthm}%
+    \else
+        \begin{assumptionthm}[#1]%
+    \fi
+}{%
+    \end{assumptionthm}%
+    \endgroup
+}
+\newenvironment{rem}{%
+    \begingroup
+    \setbeamercolor{remark box}{bg=remarkBody, fg=black}%
+    \begin{beamercolorbox}[wd=\linewidth, sep=0.33em, rounded=true]{remark box}%
+    \textbf{\textcolor{remarkTitle}{Remark.}}\hspace{0.4em}
+}{%
+    \end{beamercolorbox}%
+    \endgroup
+}
 
 \begin{document}
 
@@ -146,7 +216,6 @@
                 \setlength\parsep{0pt}
                 \setlength\itemsep{0.02cm}
                 \item Kernel and nonparametric methods
-                \item Causal inference
                 \item Statistical learning theory
             \end{itemize}
             \vspace{-0.26cm}
@@ -156,17 +225,17 @@
 
 \begin{frame}{Motivation}
     \begin{exampleblock}{}
-        \textbf{Problem:} Approximation of a target distribution $\mu$ with a finite set of points $\{\mathbf{x}_i\}_{i=1}^n$.
+        \textbf{Problem:} Approximation of a target distribution $\mu$ with a finite set of points $\{x_i\}_{i=1}^n$.
     \end{exampleblock}
     \begin{columns}[T,onlytextwidth]
         \column{0.59\textwidth}
 
         \begin{itemize}
-            \item Denote the empirical distribution of $\{\mathbf{x}_i\}_{i=1}^n$ as 
-            $$\hat{\mu}_n = \frac{1}{n}\sum_{i=1}^n \delta_{\mathbf{x}_i}.$$
-            \item We want $\hat{\mu}_n$ to be close to $\mu$ in some sense.
+            \item Denote the empirical distribution of $\{x_i\}_{i=1}^n$ as 
+            $$\mu_n = \frac{1}{n}\sum_{i=1}^n \delta_{x_i}.$$
+            \item We want $\mu_n$ to be close to $\mu$.
             \begin{align*}
-                \lim_{n\to\infty} D(\hat{\mu}_n, \mu) = 0 . 
+                \lim_{n\to\infty} D(\mu_n, \mu) = 0 . 
             \end{align*}
         \end{itemize}
 
@@ -179,7 +248,7 @@
 \begin{frame}{Motivation}
     \centering
     \begin{exampleblock}{}
-        \textbf{Problem:} Approximation of a target distribution $\mu$ with a finite set of points $\{\mathbf{x}_i\}_{i=1}^n$.
+        \textbf{Problem:} Approximation of a target distribution $\mu$ with a finite set of points $\{x_i\}_{i=1}^n$.
     \end{exampleblock}
     \vspace{0.25cm}
     \begin{columns}[b,onlytextwidth]
@@ -331,7 +400,7 @@
         \end{align*}
     \end{thm*}
     \begin{itemize}
-        \item MMD is a probability divergence ($\mathrm{MMD}(\Pb, \Qb)=0 \iff \Pb=\Qb$) if $k$ is characteristic (Gaussian)~\citep{sriperumbudur2011universality}.
+        \item MMD is a probability divergence ($\mathrm{MMD}(\Pb, \Qb)=0 \iff \Pb=\Qb$) if $k$ is $c_0$-universal (Gaussian)~\citep{sriperumbudur2011universality}.
     \end{itemize}
 \end{frame}
 
@@ -340,11 +409,11 @@
     \vspace{-0.15cm}
     \begin{itemize}
         \setlength\itemsep{0.05cm}
-        \item Start with an initial set of $n$ particles $\{\bm{x}_i^{(0)}\}_{i=1}^n$ at time $0$.
+        \item Start with an initial set of $n$ particles $\{x_i^{(0)}\}_{i=1}^n$ at time $0$.
         \item Evolve the particles according to the MMD gradient flow:
         \begin{align*}
-            \bm{x}_i^{(t+1)} = \bm{x}_i^{(t)} - \gamma \cdot \nabla_{\boldsymbol{x}_i^{(t)}} 
-            \mathrm{MMD}^2\left(\mu, \frac{1}{n} \sum_{j=1}^n \delta_{\boldsymbol{x}_j^{(t)}}\right), \qquad i=1,\ldots,n.
+            x_i^{(t+1)} = x_i^{(t)} - \gamma \cdot \nabla_{x_i^{(t)}} 
+            \mathrm{MMD}^2\left(\mu, \frac{1}{n} \sum_{j=1}^n \delta_{x_j^{(t)}}\right), \qquad i=1,\ldots,n.
         \end{align*}
         \vspace{-0.6cm}
         \begin{itemize}
@@ -371,8 +440,9 @@
 
 \begin{frame}{Existing work}
     \begin{itemize}
-        \item Existing finite-sample rates in MMD gradient flows~\citep{arbel2019maximum,chen2025drmmd}
-        \item Let ${\mu}_n^{(t)}=\frac{1}{n} \sum_{j=1}^n \delta_{\boldsymbol{x}_j^{(t)}}$ be the empirical distribution of $n$ particles at iterate $t$. 
+        \item Existing finite-sample rates in MMD gradient flows~\citep{arbel2019maximum,chen2025drmmd}.
+        \item Requires noise injection.
+        \item Let ${\mu}_n^{(t)}=\frac{1}{n} \sum_{j=1}^n \delta_{x_j^{(t)}}$ be the empirical distribution of $n$ particles at iterate $t$. 
         \begin{align*}
             \mmd\left(\mu, {\mu}_n^{(t)}\right) \leq C(t) n^{-\frac{1}{2}}, 
             \quad W_2\left(\mu, {\mu}_n^{(t)}\right) 
@@ -380,10 +450,11 @@
         \end{align*}
     \end{itemize}
     \begin{answer box}
-        {\centering\textbf{Two limitations}\par}
+        {\centering\textbf{Three limitations}\par}
         \begin{itemize}
             \item Same rate as IID sampling: $n^{-\frac{1}{2}}$.
-            \item The constant $C(t)$ grows exponentially in $t$.
+            \item The constant $C(t)$ grows exponentially in $t$. 
+            \item Noise injection.
         \end{itemize}
     \end{answer box}
 \end{frame}
@@ -393,17 +464,19 @@
         \item Minimum MMD points
         \vspace{-0.4cm}
         \begin{align*}
-            \{\mathbf{x}_i^*\}_{i=1}^n = \arg\min_{\{\mathbf{x}_i\}_{i=1}^n} \operatorname{MMD}\left(\mu, \frac{1}{n} \sum_{j=1}^n \delta_{\mathbf{x}_j}\right).
+            \{x_i^*\}_{i=1}^n = \arg\min_{\{x_i\}_{i=1}^n} \operatorname{MMD}^2\left(\mu, \frac{1}{n} \sum_{j=1}^n \delta_{x_j}\right).
         \end{align*}
-        \item Minimum MMD points achieve better than IID rate~\citep{xu2022accurate,dick2010digital}. 
-        \item Let ${\mu}_n^{\ast}=\frac{1}{n} \sum_{j=1}^n \delta_{\boldsymbol{x}_j^{\ast}}$ 
-        be the empirical distribution of $n$ minimum MMD points. 
+        \vspace{-0.4cm}
+        \item Let ${\mu}_n^{\ast}=\frac{1}{n} \sum_{j=1}^n \delta_{x_j^{\ast}}$ 
+        be the empirical distribution~\citep{xu2022accurate,dick2010digital}: 
         \vspace{-0.2cm}
         \begin{align*}
             \mmd\left(\mu, {\mu}_n^{\ast} \right) \leq C n^{-1}.
         \end{align*}
+        \vspace{-0.6cm}
+        \item Quasi Monte Carlo point set achieve this rate~\citep{dick2010digital}.
     \end{itemize}
-    \vspace{-0.2cm}
+    \vspace{0.1cm}
     \begin{answer box}
         {\centering\textbf{Two limitations}\par}
         \begin{itemize}
@@ -424,6 +497,11 @@
     }\\[0.16cm]
 
     \includegraphics[width=0.94\linewidth]{figures/illustration_stationary.pdf}
+    \begin{itemize}
+        \item A four-cross distribution.
+        \item An ideal minimum MMD points would have $5$ points in each cross.
+        \item Stationary MMD points have $(4,6,5,5)$ points in each cross.
+    \end{itemize}
 \end{frame}
 
 \begin{frame}{Stationary MMD points}
@@ -439,6 +517,7 @@
     \end{defi}
     \begin{itemize}
         \item Minimum MMD points are a special case of stationary MMD points.
+        \item Stationary MMD points are easier to compute, e.g., via MMD gradient flow.
     \end{itemize}
     \vspace{0.3cm}
     \begin{exampleblock}{}
@@ -469,10 +548,17 @@
 \end{frame}
 
 \begin{frame}{Stationary MMD points}
-\begin{itemize}
-    \item Suppose the kernel $k$ is continuously differentiable.
-    \item Suppose the kernel $k$ is $c_0$-universal. 
-\end{itemize}
+    \centering
+    \includegraphics[width=0.5\linewidth,height=0.80\textheight,keepaspectratio]{figures/exactness.pdf}
+    \begin{itemize}
+        \item Exact integration on $\calF_n$.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Stationary MMD points}
+\begin{assumption}
+    The kernel $k$ is smooth and $c_0$-universal.
+\end{assumption}
 
 \begin{prop}[Approximation of $\calF_n$ towards $\calH$]
 Given $f\in\calH$. Consider the semi-norm
@@ -512,18 +598,11 @@ Then, $\lim _{n \rightarrow \infty}|f|_n=0$.
         \vspace{-0.3cm}
         \[
             \left|\frac{1}{n}\sum_{i=1}^n f(x_i)-\int f\,\mathrm{d}\mu\right|
-            \leq |f|_n \, \operatorname{MMD}(\mu,\mu_n).
+            \leq |f|_n \cdot \operatorname{MMD}\left(\mu, \mu_n\right)
         \]
     \end{thm}
 
-    \begin{itemize}
-        \item Since
-        $\underbrace{|f|_n}_{\substack{\to 0\\ \text{stationarity}}}\to 0$,
-        the estimator has error
-        $o\!\left(\underbrace{\operatorname{MMD}(\mu,\mu_n)}_{\substack{\to 0\\ \text{MMD flow}}}\right)$.
-    \end{itemize}
-
-    \vspace{0.3cm}
+    \vspace{0.35cm}
     \begin{answer box}
         {\centering\textbf{Proof sketch}\par}
         \begin{itemize}
@@ -531,7 +610,7 @@ Then, $\lim _{n \rightarrow \infty}|f|_n=0$.
         \end{itemize}
         \begin{align*}
             \begin{aligned}
-\left|\frac{1}{n} \sum_{i=1}^n f\left(\boldsymbol{x}_i\right)-\int f \mathrm{~d} \mu\right|=\left|\frac{1}{n} \sum_{i=1}^n r_n\left(\boldsymbol{x}_i\right)-\int r_n \mathrm{~d} \mu\right|
+\left|\frac{1}{n} \sum_{i=1}^n f\left(x_i\right)-\int f \mathrm{~d} \mu\right|=\left|\frac{1}{n} \sum_{i=1}^n r_n\left(x_i\right)-\int r_n \mathrm{~d} \mu\right|
 \leq\left\|r_n\right\|_{\mathcal{H}} \cdot \operatorname{MMD}\left(\mu, \mu_n\right),
 \end{aligned}
     \end{align*}
@@ -539,6 +618,218 @@ Then, $\lim _{n \rightarrow \infty}|f|_n=0$.
     \end{answer box}
 \end{frame}
 
+
+\begin{frame}{Stationary MMD points}
+    \begin{thm}[Super-convergence]
+        Let $f\in\calH$ be fixed. For a stationary MMD point set $\{x_i\}_{i=1}^n$ and
+        $\mu_n = \frac{1}{n} \sum_{i=1}^n\delta_{x_i}$,
+        \vspace{-0.3cm}
+        \[
+            \left|\frac{1}{n}\sum_{i=1}^n f(x_i)-\int f\,\mathrm{d}\mu\right|
+            \leq
+            \tikz[remember picture, baseline=(stationaryFn.base)]{
+                \node[inner sep=0pt] (stationaryFn) {$|f|_n$};
+            }
+            \;
+            \cdot
+            \;
+            \tikz[remember picture, baseline=(stationaryMmd.base)]{
+                \node[inner sep=0pt] (stationaryMmd) {$\operatorname{MMD}(\mu,\mu_n)$};
+            }.
+        \]
+    \end{thm}
+    \tikz[remember picture, overlay] \coordinate (stationaryArrowBase) at (0,-0.20);
+
+    \begin{tikzpicture}[remember picture, overlay]
+        \node[font=\small\bfseries, align=center, text=mmdGreen!85!black] (stationaryFnLabel)
+            at ([xshift=-0.15cm,yshift=-0.10cm]stationaryFn.south |- stationaryArrowBase)
+            {$\to 0$\\Stationarity};
+        \draw[-{Latex[length=3.4mm,width=2.6mm]}, line width=1.25pt, mmdGreen!85!black, line cap=round]
+            ([yshift=0.02cm]stationaryFnLabel.north) -- ([yshift=-0.03cm]stationaryFn.south);
+
+        \node[font=\small\bfseries, align=center, text=mmdGreen!85!black] (stationaryMmdLabel)
+            at ([xshift=0.15cm,yshift=-0.10cm]stationaryMmd.south |- stationaryArrowBase)
+            {$\to 0$\\MMD flow};
+        \draw[-{Latex[length=3.4mm,width=2.6mm]}, line width=1.25pt, mmdGreen!85!black, line cap=round]
+            ([yshift=0.02cm]stationaryMmdLabel.north) -- ([yshift=-0.03cm]stationaryMmd.south);
+    \end{tikzpicture}
+    \vspace{0.3cm}
+    \begin{itemize}
+        \item Proved already (\ding{51}): $|f|_n \to 0$ due to stationarity. 
+        \item Next step (\ding{220}): $\operatorname{MMD}(\mu,\mu_n)\to 0$. 
+        \item Key bit (\ding{72}): Avoid $C(t)$ exponential in time. 
+    \end{itemize}
+    \begin{exampleblock}{}
+        \centering If we can prove that, $\operatorname{MMD}(\mu,\mu_n)=\calO(n^{-\frac{1}{2}})$, then we obtain $o(n^{-\frac{1}{2}})$ rate.
+    \end{exampleblock}
+\end{frame}
+
+
+
+\begin{frame}{Stationary MMD points}
+    \begin{itemize}
+        \item At iterate $t\in\N$ 
+        \item MMD gradient flow: for $i=1,\ldots,n$,
+        \begin{align*}
+        x_i^{(t+1)}=x_i^{(t)}-\gamma \, \Biggl\{\frac{1}{n} \sum_{j=1}^n \nabla_1 k\left(x_i^{(t)}, \; x_j^{(t)}\right)-\mathbb{E}_{Y \sim \mu}\left[\nabla_1 k\left(x_i^{(t)}, \; Y\right)\right]\Biggr\}
+        \end{align*}
+        \item \red{Noisy} MMD gradient flow: for $i=1,\ldots,n$,
+        \begin{itemize}
+            \item $u_i^{(t)} \sim \mathcal{N}\left(0, \mathrm{I}_d\right)$ and $\beta_t>0$.
+        \end{itemize}
+        \begin{align*}
+            x_i^{(t+1)}=x_i^{(t)}-\gamma \, \Biggl\{\frac{1}{n} \sum_{j=1}^n \nabla_1 k\left(x_i^{(t)} + \textcolor{red}{\beta_t u_i^{(t)}} , \; x_j^{(t)}\right)-\mathbb{E}_{Y \sim \mu}\left[\nabla_1 k\left(x_i^{(t)} + \textcolor{red}{\beta_t u_i^{(t)}} , \; Y\right)\right]\Biggr\}
+        \end{align*}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Stationary MMD points}
+    \begin{assumption}[Noise level]
+        Define
+        $\Phi(z, w)
+        = \mathbb{E}_{Y \sim \mu}\left[\nabla_1 k(z, Y)\right]
+        - \nabla_1 k(z, w)$.
+        For each $t \in \mathbb{N}$, 
+        $\beta_t \in (0,1)$ satisfies, 
+        \[
+        \resizebox{0.98\linewidth}{!}{$\displaystyle
+        \frac{1}{n} \sum_{i=1}^n
+        \mathbb{E}_{u_i^{(t)}}\left[
+        \left\|
+        \frac{1}{n} \sum_{j=1}^n
+        \Phi\left(x_i^{(t)}+\beta_t u_i^{(t)}, x_j^{(t)}\right)
+        \right\|^2
+        \right]
+        \geq
+        \textcolor{darkgreen}{\beta_t^2}
+        \operatorname{MMD}^2\left(
+        \frac{1}{n} \sum_{i=1}^n \delta_{x_i^{(t)}}, \mu
+        \right).$}
+        \]
+    \end{assumption}
+    \begin{itemize}
+        \item In expectation, a gradient dominance condition.
+        \item Seems unavoidable for convergence of MMD flow~\citep{arbel2019maximum,chen2025drmmd}.
+    \end{itemize}
+    \vspace{-0.15cm}
+    \begin{center}
+        \sorrycartoon
+    \end{center}
+\end{frame}
+
+\begin{frame}{Stationary MMD points}
+\begin{thm}
+Suppose that there exists $\beta_t \propto t^{-\alpha}$ for $0 \leq \alpha<1 / 2$ such that the condition holds. 
+$C'$ depends only on kernel $k$ and dimension $d$. 
+Then, for any $T \leq n^{\frac{1}{\alpha}}$, with high probability,
+$$
+\operatorname{MMD}\left(\mu_n^{(T)}, \mu\right)=\mathcal{O} \left(\exp \left(-C^{\prime} \gamma T^{1-2 \alpha}\right)+\frac{(\log T)^2 T^\alpha}{\sqrt{n}}\right).
+$$
+\end{thm}
+\begin{itemize}
+    \item Reduce the exponential dependence on $T$ to a \blue{polynomial} dependence.
+    \item First end-to-end finite-particle convergence bound for MMD flow.
+    \item Take $T\propto(\log n)^{\frac{1}{1-2 \alpha}}$, then $\operatorname{MMD}\left(\mu_n^{(T)}, \mu\right)=\mathcal{O}(n^{-\frac{1}{2}})$ up to logarithmic factors. 
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Stationary MMD points}
+    \[
+        \left|\frac{1}{n}\sum_{i=1}^n f(x_i)-\int f\,\mathrm{d}\mu\right|
+        \leq
+        \tikz[remember picture, baseline=(stationaryFn.base)]{
+            \node[inner sep=0pt] (stationaryFn) {$|f|_n$};
+        }
+        \;
+        \cdot
+        \;
+        \tikz[remember picture, baseline=(stationaryMmd.base)]{
+            \node[inner sep=0pt] (stationaryMmd) {$\operatorname{MMD}(\mu,\mu_n)$};
+        }.
+    \]
+    \tikz[remember picture, overlay] \coordinate (stationaryArrowBase) at (0,-0.20);
+
+    \begin{itemize}
+        \item $\lim_{n\to\infty} |f|_n=0$ due to \green{stationarity}.
+        \item $\operatorname{MMD}(\mu,\mu_n)=\calO(n^{-\frac{1}{2}} (\log n)^b)$ due to \green{MMD flow convergence}.
+    \end{itemize}
+    \vspace{0.12cm}
+    \begin{center}
+        \begin{tikzpicture}[x=1cm,y=1cm]
+            \fill[mmdGreen!85!yellow]
+                (-3.95,0.26) -- (-2.45,0.46) -- (-2.45,0.68) -- (-1.55,0.15)
+                -- (-2.45,-0.38) -- (-2.45,-0.16) -- (-3.95,0.04) -- cycle;
+
+            \node[align=left, anchor=west] at (-1.20,0.14)
+                {$o(n^{-\frac{1}{2}} (\log n)^b)$ rate for stationary MMD points.};
+        \end{tikzpicture}
+    \end{center}
+    \begin{rem}
+        If started with some point sets with $\operatorname{MMD}(\mu,\mu_n)=\calO(n^{-r})$, 
+        then we can run MMD flow for $T=\calO(1)$ iterations to obtain a new point set with $o(n^{-r})$ rate. 
+    \end{rem}
+\end{frame}
+
+\begin{frame}{Experiments}
+    \begin{itemize}
+        \item Mixture of Gaussians.
+        \item KH is kernel herding~\citep{chen2012super}; KT is kernel thinning~\citep{dwivedi2024kernel}; SP is support points~\citep{mak2018support}. 
+    \end{itemize}
+    \vspace{0.2cm}
+    \centering \includegraphics[width=\linewidth,keepaspectratio]{figures/mog.pdf}
+    \vspace{-0.2cm}
+    \begin{itemize}
+        \item $f_1\in\calH$ while $f_2\notin\calH$.
+        \item Stationary MMD points along with KT are the best.
+        \item SP works well on $f_2$ since it uses $k(x,y)=\|x-y\|$.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Experiments}
+    \begin{itemize}
+        \item Coreset selection from a large dataset
+        \item House (Top) has $22,784$ and Elevator (Bottom) has $16,599$ data points.
+    \end{itemize}
+    \vspace{0.1cm}
+    \centering
+    \includegraphics[width=0.65\linewidth,keepaspectratio]{figures/house.pdf}
+    \vspace{0.1cm}
+    \centering
+    \includegraphics[width=0.65\linewidth,keepaspectratio]{figures/elevators.pdf}
+\end{frame}
+
+\begin{frame}{Summary}
+    \begin{columns}[c,onlytextwidth]
+        \column{0.68\textwidth}
+            \begin{beamercolorbox}[wd=\linewidth, sep=0.35em, rounded=true]{answer box}
+                {\bfseries Contributions}\\[-0.05cm]
+                \begin{itemize}
+                    \item We propose stationary MMD points.
+                    \item A novel framework for low-discrepancy points.
+                    \item Better rate from stationarity.
+                \end{itemize}
+            \end{beamercolorbox}
+        \column{0.27\textwidth}
+            \centering
+            \resizebox{0.58\linewidth}{!}{\strengthcartoon}
+    \end{columns}
+
+    \vspace{0.28cm}
+
+    \begin{columns}[c,onlytextwidth]
+        \column{0.68\textwidth}
+            \begin{beamercolorbox}[wd=\linewidth, sep=0.35em, rounded=true]{answer box}
+                {\bfseries Limitations}\\[-0.05cm]
+                \begin{itemize}
+                    \item We only prove a $o(n^{-\frac{1}{2}} (\log n)^b)$ rate, unclear if better than IID $\calO(n^{-\frac{1}{2}})$ or not.
+                    \item Noise injection in MMD flow is not ideal.
+                \end{itemize}
+            \end{beamercolorbox}
+        \column{0.27\textwidth}
+            \centering
+            \resizebox{0.58\linewidth}{!}{\limitationcartoon}
+    \end{columns}
+\end{frame}
 \begin{frame}[allowframebreaks]{References}
   \bibliographystyle{alpha}
   \bibliography{reference}

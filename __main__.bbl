@@ -14,6 +14,16 @@ Zonghao Chen, Atalanti Mustafi, Pierre Glaser, Anna Korba, Arthur Gretton, and
 \newblock {(De)-regularized MMD Gradient Flow}.
 \newblock {\em Journal of Machine Learning Research}, 2025.
 
+\bibitem[CWS12]{chen2012super}
+Yutian Chen, Max Welling, and Alex Smola.
+\newblock Super-samples from kernel herding.
+\newblock {\em arXiv preprint arXiv:1203.3472}, 2012.
+
+\bibitem[DM24]{dwivedi2024kernel}
+Raaz Dwivedi and Lester Mackey.
+\newblock Kernel thinning.
+\newblock {\em Journal of Machine Learning Research}, 25(152):1--77, 2024.
+
 \bibitem[DP10]{dick2010digital}
 Josef Dick and Friedrich Pillichshammer.
 \newblock {\em Digital nets and sequences: discrepancy theory and quasi--Monte
@@ -25,6 +35,11 @@ Arthur Gretton, Karsten~M. Borgwardt, Malte~J. Rasch, Bernhard Sch{\"o}lkopf,
   and Alexander Smola.
 \newblock A kernel two-sample test.
 \newblock {\em Journal of Machine Learning Research}, 13(1):723--773, 2012.
+
+\bibitem[MJ18]{mak2018support}
+Simon Mak and V~Roshan Joseph.
+\newblock Support points.
+\newblock 2018.
 
 \bibitem[SFL11]{sriperumbudur2011universality}
 Bharath~K. Sriperumbudur, Kenji Fukumizu, and Gert R.~G. Lanckriet.
